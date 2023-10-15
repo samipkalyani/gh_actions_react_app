@@ -1,5 +1,16 @@
 name: Test and Deploy Repository
-on: [push, workflow_dispatch]
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - "dev-*"
+      - "feat/**"
+    paths-ignore:
+      - ".github/workflows/*"
 jobs:
   test:
     runs-on: ubuntu-latest
