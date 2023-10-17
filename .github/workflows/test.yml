@@ -32,7 +32,7 @@ jobs:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        id: steps.cache.outputs.cache-hit != true
+        if: steps.cache.outputs.cache-hit != true
         run: npm ci
       - name: Test code
         id: run-tests
@@ -84,4 +84,4 @@ jobs:
     if: failure()
     steps:
       - name: Generate Report
-        runs: echo "Generating report..."
+        run: echo "Generating report..."
